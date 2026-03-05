@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstallBunker.Common\InstallBunker.Common.csproj" />
+    <ProjectReference Include="..\InstallBunker.Domain\InstallBunker.Domain.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Vestris.ResourceLib" Version="2.2.0" />
+	</ItemGroup>
+
+</Project>

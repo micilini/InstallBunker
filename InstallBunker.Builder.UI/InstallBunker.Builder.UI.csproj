@@ -1,0 +1,112 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ApplicationIcon>installbunker-icon.ico</ApplicationIcon>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<AssemblyName>InstallBunker</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="installbunker-icon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Vestris.ResourceLib" Version="2.2.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstallBunker.Common\InstallBunker.Common.csproj" />
+    <ProjectReference Include="..\InstallBunker.Compiler.Core\InstallBunker.Compiler.Core.csproj" />
+    <ProjectReference Include="..\InstallBunker.Domain\InstallBunker.Domain.csproj" />
+    <ProjectReference Include="..\InstallBunker.Installer.Core\InstallBunker.Installer.Core.csproj" />
+    <ProjectReference Include="..\InstallBunker.Packager\InstallBunker.Packager.csproj" />
+    <ProjectReference Include="..\InstallBunker.Uninstaller.Core\InstallBunker.Uninstaller.Core.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="BuilderResources\CompilerTemplates\**\*.cs" />
+		<Compile Remove="BuilderResources\EmbeddedToolchain\**\*.cs" />
+
+		<Page Remove="BuilderResources\CompilerTemplates\**\*.xaml" />
+		<Page Remove="BuilderResources\EmbeddedToolchain\**\*.xaml" />
+
+		<ApplicationDefinition Remove="BuilderResources\CompilerTemplates\**\App.xaml" />
+		<ApplicationDefinition Remove="BuilderResources\EmbeddedToolchain\**\App.xaml" />
+
+		<EmbeddedResource Remove="BuilderResources\EmbeddedToolchain\**\*" />
+
+		<None Remove="BuilderResources\CompilerTemplates\**\*" />
+		<None Remove="BuilderResources\EmbeddedToolchain\**\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Modules\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="BuilderResources\CompilerTemplates\README.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+		<None Include="BuilderResources\CompilerTemplates\SetupStub\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</None>
+
+		<None Include="BuilderResources\CompilerTemplates\UninstallStub\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</None>
+
+		<None Include="..\InstallBunker.Common\**\*"
+			  Exclude="..\InstallBunker.Common\bin\**\*;..\InstallBunker.Common\obj\**\*;..\InstallBunker.Common\**\*.csproj.user">
+			<TargetPath>BuilderResources\CompilerTemplates\RuntimeSupport\InstallBunker.Common\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+		<None Include="..\InstallBunker.Domain\**\*"
+			  Exclude="..\InstallBunker.Domain\bin\**\*;..\InstallBunker.Domain\obj\**\*;..\InstallBunker.Domain\**\*.csproj.user">
+			<TargetPath>BuilderResources\CompilerTemplates\RuntimeSupport\InstallBunker.Domain\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+		<None Include="..\InstallBunker.Installer.Core\**\*"
+			  Exclude="..\InstallBunker.Installer.Core\bin\**\*;..\InstallBunker.Installer.Core\obj\**\*;..\InstallBunker.Installer.Core\**\*.csproj.user">
+			<TargetPath>BuilderResources\CompilerTemplates\RuntimeSupport\InstallBunker.Installer.Core\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+		<None Include="..\InstallBunker.Uninstaller.Core\**\*"
+			  Exclude="..\InstallBunker.Uninstaller.Core\bin\**\*;..\InstallBunker.Uninstaller.Core\obj\**\*;..\InstallBunker.Uninstaller.Core\**\*.csproj.user">
+			<TargetPath>BuilderResources\CompilerTemplates\RuntimeSupport\InstallBunker.Uninstaller.Core\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+
+		<None Include="BuilderResources\EmbeddedToolchain\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</None>
+	</ItemGroup>
+
+</Project>

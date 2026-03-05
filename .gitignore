@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.nuget.cache
+
+# Publish profiles (local only)
+**/Properties/PublishProfiles/*.pubxml.user
+
+# Modules folder (embedded .NET toolchain — must be placed manually)
+**/Modules/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs & diagnostics
+*.log
+*.diagnostics

@@ -1,0 +1,292 @@
+﻿<Window x:Class="InstallBunker.Uninstaller.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="InstallBunker Uninstaller"
+        Height="620"
+        Width="960"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F4F6">
+    <Window.Resources>
+        <Style x:Key="FooterButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="96"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="PrimaryFooterButtonStyle" TargetType="Button" BasedOn="{StaticResource FooterButtonStyle}">
+            <Setter Property="Background" Value="#DC2626"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DC2626"/>
+        </Style>
+
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+
+        <Style x:Key="SectionBodyStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#0F172A">
+            <Grid Margin="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Width="78"
+      Height="78"
+      HorizontalAlignment="Left">
+                    <Border x:Name="SidebarIconFallbackBorder"
+            CornerRadius="14"
+            Background="#DC2626">
+                        <Viewbox>
+                            <TextBlock Text="IB"
+                       Foreground="White"
+                       FontWeight="Bold"/>
+                        </Viewbox>
+                    </Border>
+
+                    <Border x:Name="SidebarIconImageBorder"
+            CornerRadius="14"
+            Background="Transparent"
+            Visibility="Collapsed">
+                        <Image x:Name="SidebarAppIcon"
+               Stretch="Uniform"
+               Margin="6"/>
+                    </Border>
+                </Grid>
+
+                <StackPanel Grid.Row="1" Margin="0,22,0,0">
+                    <TextBlock x:Name="TxtSidebarAppName"
+                               Text="InstallBunker"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                    <TextBlock x:Name="TxtSidebarVersion"
+                               Text="Version"
+                               Margin="0,6,0,0"
+                               FontSize="13"
+                               Foreground="#CBD5E1"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="0,28,0,0">
+                    <TextBlock Text="Uninstall Wizard"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="White"/>
+                    <TextBlock Text="Remove the installed application safely using the recorded install receipt."
+                               Margin="0,10,0,0"
+                               TextWrapping="Wrap"
+                               FontSize="13"
+                               Foreground="#CBD5E1"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="3"
+                           Text="InstallBunker"
+                           Foreground="#94A3B8"
+                           FontSize="12"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="28">
+                <Grid x:Name="StepWelcomePanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Welcome to the InstallBunker Uninstall Wizard"
+                               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="This wizard will guide you through the removal of the installed application."
+                               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <Border Grid.Row="2"
+                            Margin="0,24,0,0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Detected Installation"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#111827"/>
+                            <TextBlock x:Name="TxtWelcomeSummary"
+                                       Margin="0,12,0,0"
+                                       Style="{StaticResource SectionBodyStyle}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="StepDetailsPanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Installed Application Details"
+                               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Review the information below before uninstalling."
+                               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <Border Grid.Row="2"
+                            Margin="0,24,0,0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Summary"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#111827"/>
+                            <TextBlock x:Name="TxtInstalledSummary"
+                                       Margin="0,12,0,0"
+                                       Style="{StaticResource SectionBodyStyle}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="StepUninstallingPanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Uninstalling"
+                               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Please wait while the application is being removed."
+                               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <StackPanel Grid.Row="2" Margin="0,24,0,0">
+                        <ProgressBar x:Name="UninstallProgressBar"
+                                     Height="22"
+                                     Minimum="0"
+                                     Maximum="100"/>
+                        <TextBlock x:Name="TxtProgressStatus"
+                                   Margin="0,10,0,0"
+                                   FontWeight="SemiBold"
+                                   Foreground="#111827"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="3"
+                            Margin="0,22,0,0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <TextBox x:Name="TxtUninstallLog"
+                                 IsReadOnly="True"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 BorderThickness="0"
+                                 Background="Transparent"/>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="StepCompletedPanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="TxtCompletedTitle"
+                               Text="Uninstall Complete"
+                               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock x:Name="TxtCompletedDescription"
+                               Grid.Row="1"
+                               Text="The application was removed successfully."
+                               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <Border Grid.Row="2"
+                            Margin="0,24,0,0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Uninstall Summary"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#111827"/>
+                            <TextBlock x:Name="TxtCompletedSummary"
+                                       Margin="0,12,0,0"
+                                       Style="{StaticResource SectionBodyStyle}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Border Grid.Row="1"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1,1,0,0">
+                <Grid Margin="24,14">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="TxtFooterHint"
+                               VerticalAlignment="Center"
+                               Foreground="#6B7280"
+                               Text="Ready."/>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button x:Name="BtnBack"
+                                Style="{StaticResource FooterButtonStyle}"
+                                Content="&lt; Back"
+                                Click="BtnBack_Click"/>
+
+                        <Button x:Name="BtnNext"
+                                Style="{StaticResource PrimaryFooterButtonStyle}"
+                                Content="Next &gt;"
+                                Click="BtnNext_Click"/>
+
+                        <Button x:Name="BtnCancel"
+                                Style="{StaticResource FooterButtonStyle}"
+                                Content="Cancel"
+                                Click="BtnCancel_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,527 @@
+﻿<Window x:Class="InstallBunker.Builder.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="InstallBunker Builder"
+        Height="680"
+        Width="1040"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F4F6">
+    <Window.Resources>
+        <Style x:Key="FooterButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="96"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="PrimaryFooterButtonStyle" TargetType="Button" BasedOn="{StaticResource FooterButtonStyle}">
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#2563EB"/>
+        </Style>
+
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+
+        <Style x:Key="SectionBodyStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <Style x:Key="FieldHintStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+
+        <Style x:Key="FormComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#0F172A">
+            <Grid Margin="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Width="78"
+                        Height="78"
+                        CornerRadius="14"
+                        Background="#1D4ED8"
+                        HorizontalAlignment="Left">
+                    <Viewbox>
+                        <TextBlock Text="IB"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+                    </Viewbox>
+                </Border>
+
+                <StackPanel Grid.Row="1" Margin="0,22,0,0">
+                    <TextBlock Text="InstallBunker"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                    <TextBlock Text="Builder 1.0.0"
+                               Margin="0,6,0,0"
+                               FontSize="13"
+                               Foreground="#CBD5E1"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="0,28,0,0">
+                    <TextBlock Text="Package Builder"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="White"/>
+                    <TextBlock Text="Create professional install packages with a simple guided flow."
+                               Margin="0,10,0,0"
+                               TextWrapping="Wrap"
+                               FontSize="13"
+                               Foreground="#CBD5E1"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="3"
+                           Text="InstallBunker"
+                           Foreground="#94A3B8"
+                           FontSize="12"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Menu Grid.Row="0"
+          Background="White"
+          BorderBrush="#E5E7EB"
+          BorderThickness="0,0,0,1"
+          Padding="8,4">
+                <MenuItem Header="_File">
+                            <MenuItem Header="_New Project"
+                      Click="MenuNewProject_Click"/>
+                            <MenuItem Header="_Open Project..."
+                      Click="MenuOpenProject_Click"/>
+                            <MenuItem x:Name="MenuRecentProjects"
+                      Header="_Recent Projects"/>
+                            <Separator/>
+                            <MenuItem Header="_Save"
+                      Click="MenuSaveProject_Click"/>
+                            <MenuItem Header="Save _As..."
+                      Click="MenuSaveAsProject_Click"/>
+                            <Separator/>
+                            <MenuItem Header="E_xit"
+                      Click="MenuExit_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_About"
+                      Click="MenuAbout_Click"/>
+                </MenuItem>
+            </Menu>
+
+            <Grid Grid.Row="1" Margin="28">
+                <Grid x:Name="StepWelcomePanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Welcome to InstallBunker Builder"
+                               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="This wizard will help you create an installable package with Setup.exe, manifest.json and payload."
+                               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <Border Grid.Row="2"
+                            Margin="0,24,0,0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="What you will configure"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#111827"/>
+                            <TextBlock Margin="0,12,0,0"
+                                       Style="{StaticResource SectionBodyStyle}"
+                                       Text="• Package identity&#10;• Source files and assets&#10;• Installation options&#10;• Output location&#10;• Final package generation"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <ScrollViewer x:Name="StepPackageInfoPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Package Information"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+
+                        <TextBlock Text="Fill in the basic identity of the application package."
+                                   Style="{StaticResource SectionBodyStyle}"/>
+
+                        <Border Margin="0,24,0,0" Style="{StaticResource CardBorderStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,12,0">
+                                    <TextBlock Text="App Name" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtAppName" Height="34"/>
+                                    <TextBlock Text="The public product name shown in the installer, Apps &amp; Features and uninstall flow."
+                                               Style="{StaticResource FieldHintStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                    <TextBlock Text="Version" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtVersion" Height="34"/>
+                                    <TextBlock Text="The package version written to the manifest and displayed to the user."
+                                               Style="{StaticResource FieldHintStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,18,0,0">
+                                    <TextBlock Text="Publisher" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtPublisher" Height="34"/>
+                                    <TextBlock Text="The company, team or developer name that owns the package."
+                                               Style="{StaticResource FieldHintStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0,18,0,0">
+                                    <TextBlock Text="Output Directory" Style="{StaticResource LabelStyle}"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox x:Name="TxtOutputDirectory" Height="34"/>
+                                        <Button Grid.Column="1"
+                                                Margin="10,0,0,0"
+                                                Width="94"
+                                                Height="34"
+                                                Content="Browse..."
+                                                Click="BtnBrowseOutputDirectory_Click"/>
+                                    </Grid>
+                                    <TextBlock Text="The folder where Setup.exe, Uninstall.exe, manifest.json and payload will be generated."
+                                               Style="{StaticResource FieldHintStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="StepFilesPanel"
+              Visibility="Collapsed"
+              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="0,0,12,0">
+                        <TextBlock Text="Files and Assets"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+
+                        <TextBlock Text="Choose the source folder, main executable, icon and optional license file."
+                                   Style="{StaticResource SectionBodyStyle}"/>
+
+                        <Border Margin="0,24,0,0" Style="{StaticResource CardBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Source Directory" Style="{StaticResource LabelStyle}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="TxtSourceDirectory" Height="34"/>
+                                    <Button Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            Width="94"
+                                            Height="34"
+                                            Content="Browse..."
+                                            Click="BtnBrowseSourceDirectory_Click"/>
+                                </Grid>
+                                <TextBlock Text="The compiled application folder that will be copied into the package payload."
+                                           Style="{StaticResource FieldHintStyle}"/>
+
+                                <TextBlock Margin="0,18,0,6" Text="Main Executable (full path inside source)" Style="{StaticResource LabelStyle}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="TxtMainExecutable" Height="34"/>
+                                    <Button Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            Width="94"
+                                            Height="34"
+                                            Content="Browse..."
+                                            Click="BtnBrowseMainExecutable_Click"/>
+                                </Grid>
+                                <TextBlock Text="Choose the main .exe that represents the application entry point. The Builder will convert it to a relative path in the manifest."
+                                           Style="{StaticResource FieldHintStyle}"/>
+
+                                <TextBlock Margin="0,18,0,6" Text="Icon File (full path inside source)" Style="{StaticResource LabelStyle}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="TxtIconPath" Height="34"/>
+                                    <Button Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            Width="94"
+                                            Height="34"
+                                            Content="Browse..."
+                                            Click="BtnBrowseIconFile_Click"/>
+                                </Grid>
+                                <TextBlock Text="Choose the file used as the product icon reference. This is selectable manually and is no longer auto-detected."
+                                           Style="{StaticResource FieldHintStyle}"/>
+
+                                <TextBlock Margin="0,18,0,6" Text="License File (optional, absolute path)" Style="{StaticResource LabelStyle}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="TxtLicenseFile" Height="34"/>
+                                    <Button Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            Width="94"
+                                            Height="34"
+                                            Content="Browse..."
+                                            Click="BtnBrowseLicenseFile_Click"/>
+                                </Grid>
+                                <TextBlock Text="Optional text file displayed by the installer before continuing with installation."
+                                           Style="{StaticResource FieldHintStyle}"/>
+
+                                <TextBlock x:Name="TxtFilesHint"
+                                           Margin="0,14,0,0"
+                                           Foreground="#6B7280"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="StepOptionsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Install Options"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+
+                        <TextBlock Text="Configure installation scope and default shortcut options."
+                                   Style="{StaticResource SectionBodyStyle}"/>
+
+                        <Border Margin="0,24,0,0" Style="{StaticResource CardBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Allowed Scopes" Style="{StaticResource LabelStyle}"/>
+                                <CheckBox x:Name="ChkAllowPerUser"
+                                          Content="Allow Per-user installation"
+                                          Checked="InstallOptionChanged"
+                                          Unchecked="InstallOptionChanged"/>
+                                <CheckBox x:Name="ChkAllowPerMachine"
+                                          Margin="0,10,0,0"
+                                          Content="Allow Per-machine installation"
+                                          Checked="InstallOptionChanged"
+                                          Unchecked="InstallOptionChanged"/>
+
+                                <TextBlock Margin="0,18,0,6" Text="Default Install Scope" Style="{StaticResource LabelStyle}"/>
+                                <ComboBox x:Name="CmbDefaultScope"
+                                          Style="{StaticResource FormComboBoxStyle}"
+                                          SelectionChanged="InstallOptionChanged">
+                                    <ComboBoxItem Content="PerUser" FontSize="15"/>
+                                    <ComboBoxItem Content="PerMachine" FontSize="15"/>
+                                </ComboBox>
+                                <TextBlock Text="The scope preselected by default when the installer wizard opens."
+                                           Style="{StaticResource FieldHintStyle}"/>
+
+                                <TextBlock Margin="0,18,0,6" Text="Default Shortcuts" Style="{StaticResource LabelStyle}"/>
+                                <CheckBox x:Name="ChkDesktopShortcut"
+                                          Content="Create Desktop shortcut by default"
+                                          Checked="InstallOptionChanged"
+                                          Unchecked="InstallOptionChanged"/>
+                                <CheckBox x:Name="ChkStartMenuShortcut"
+                                          Margin="0,10,0,0"
+                                          Content="Create Start Menu shortcut by default"
+                                          Checked="InstallOptionChanged"
+                                          Unchecked="InstallOptionChanged"/>
+
+                                <TextBlock x:Name="TxtOptionsHint"
+                                           Margin="0,14,0,0"
+                                           Foreground="#6B7280"
+                                           TextWrapping="Wrap"/>
+
+                                <TextBlock Margin="0,18,0,6"
+                                           Text="Diagnostics Options"
+                                           Style="{StaticResource LabelStyle}"/>
+
+                                <CheckBox x:Name="ChkGenerateDiagnosticsFile"
+                                          Content="Generate compiler diagnostics file in the output folder"
+                                          IsChecked="False"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Grid x:Name="StepBuildPanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Build Package"
+               Style="{StaticResource SectionTitleStyle}"/>
+
+                    <TextBlock Grid.Row="1"
+               Text="Review the summary and generate the install package."
+               Style="{StaticResource SectionBodyStyle}"/>
+
+                    <Border x:Name="BuildSummaryCard"
+            Grid.Row="2"
+            Margin="0,24,0,0"
+            Style="{StaticResource CardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Build Summary"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       Foreground="#111827"/>
+                            <TextBlock x:Name="TxtBuildSummary"
+                       Margin="0,12,0,0"
+                       Style="{StaticResource SectionBodyStyle}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Row="3"
+            Margin="0,22,0,0"
+            Style="{StaticResource CardBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ProgressBar x:Name="BuildProgressBar"
+                         Height="22"
+                         Minimum="0"
+                         Maximum="100"/>
+
+                            <TextBox x:Name="TxtBuildStatus"
+                     Grid.Row="1"
+                     Margin="0,10,0,0"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     BorderBrush="#E5E7EB"
+                     Background="#F9FAFB"
+                     Height="97"
+                     VerticalAlignment="Top"/>
+
+                            <Label x:Name="txtFinishBuildingStatus"
+       Visibility="Hidden"
+       Grid.Row="1"
+       Margin="0,10,0,0"
+       VerticalAlignment="Top"
+       Foreground="#374151"
+       FontSize="13"
+       Content="Build completed successfully.&#10;Please check the output folder, then click Finish to close the Builder."/>
+
+                            <TextBox x:Name="TxtBuildLog"
+                     Grid.Row="2"
+                     Margin="0,18,0,0"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     Height="220"
+                     Visibility="Collapsed"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Border Grid.Row="2"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1,1,0,0">
+                <Grid Margin="24,14">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="TxtFooterHint"
+                               VerticalAlignment="Center"
+                               Foreground="#6B7280"
+                               Text="Ready."/>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button x:Name="BtnBack"
+                                Style="{StaticResource FooterButtonStyle}"
+                                Content="&lt; Back"
+                                Click="BtnBack_Click"/>
+
+                        <Button x:Name="BtnNext"
+                                Style="{StaticResource PrimaryFooterButtonStyle}"
+                                Content="Next &gt;"
+                                Click="BtnNext_Click"/>
+
+                        <Button x:Name="BtnCancel"
+                                Style="{StaticResource FooterButtonStyle}"
+                                Content="Cancel"
+                                Click="BtnCancel_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

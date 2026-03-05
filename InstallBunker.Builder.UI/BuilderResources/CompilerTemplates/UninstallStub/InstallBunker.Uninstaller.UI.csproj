@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\RuntimeSupport\InstallBunker.Common\InstallBunker.Common.csproj" />
+		<ProjectReference Include="..\RuntimeSupport\InstallBunker.Domain\InstallBunker.Domain.csproj" />
+		<ProjectReference Include="..\RuntimeSupport\InstallBunker.Uninstaller.Core\InstallBunker.Uninstaller.Core.csproj" />
+	</ItemGroup>
+
+</Project>

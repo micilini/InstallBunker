@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstallBunker.Common\InstallBunker.Common.csproj" />
+    <ProjectReference Include="..\InstallBunker.Domain\InstallBunker.Domain.csproj" />
+    <ProjectReference Include="..\InstallBunker.Installer.Core\InstallBunker.Installer.Core.csproj" />
+    <ProjectReference Include="..\InstallBunker.Packager\InstallBunker.Packager.csproj" />
+    <ProjectReference Include="..\InstallBunker.Uninstaller.Core\InstallBunker.Uninstaller.Core.csproj" />
+  </ItemGroup>
+
+</Project>
