@@ -1,12 +1,12 @@
-<!-- Replace the image below with your actual logo path -->
 ![InstallBunker Logo](images/installbunker-icon.png)
 
 # InstallBunker For Windows (1.0.0)
 
 Build professional installers for your Windows apps — no external tools required. :)
 
-<!-- Replace the button image and link below with your actual download page -->
-[![Download InstallBunker](images/buttonDownload.png)]()
+<a href="https://github.com/micilini/InstallBunker/releases/download/v1.0.0/Setup-InstallBunker-1.0.0-x64.zip">
+  <img src="images/buttonDownload.png" width="300"/>
+</a>
 
 ---
 
@@ -33,7 +33,6 @@ See the benefits of using **InstallBunker**:
 
 ## Application Images
 
-<!-- Add your screenshot images here -->
 ![Screen 1](images/screen_01.png)
 
 ![Screen 2](images/screen_02.png)
