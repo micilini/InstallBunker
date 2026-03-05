@@ -77,18 +77,26 @@ dotnet restore
 
 **4. Place the embedded toolchain**
 
-InstallBunker requires a .NET SDK to be available inside the `Modules/` folder at runtime. This is the embedded `dotnet.exe` that powers the compiler without requiring any system-wide SDK installation.
+InstallBunker requires a .NET SDK to be available inside the `BuilderResources/EmbeddedToolchain/` folder at runtime. This is the embedded `dotnet.exe` that powers the compiler without requiring any system-wide SDK installation.
 
-> **Important:** The `Modules/` folder is not included in source control (it is excluded via `.gitignore`). You must populate it manually from a .NET 8 SDK distribution before running or publishing the Builder.
+> **Important:** The `EmbeddedToolchain/` folder is not included in source control (it is excluded via `.gitignore`). You must populate it manually before running or publishing the Builder.
 
-The expected structure inside `Modules/` mirrors a standard .NET SDK layout, for example:
+Download the toolchain package and extract it into the correct location:
 
+1. Download **[EmbeddedToolchain.zip](https://github.com/micilini/InstallBunker/releases/download/donet-8.0/EmbeddedToolchain.zip)**
+2. Inside your project, navigate to `InstallBunker.Builder.UI > BuilderResources`
+3. Create a folder called `EmbeddedToolchain`
+4. Extract all files from the zip directly into that folder
+
+The expected structure should look like this:
 ```
-Modules/
-  dotnet.exe
-  sdk/
-  shared/
-  packs/
+InstallBunker.Builder.UI/
+  BuilderResources/
+    EmbeddedToolchain/
+      dotnet.exe
+      sdk/
+      shared/
+      packs/
 ```
 
 **5. Build and run**
